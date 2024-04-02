@@ -48,8 +48,8 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PEM_EC2_PAGOS }}
           script: |
-              npm install express
-              npm install -g pm2
+              sudo npm install express
+              sudo npm install -g pm2
       
       - name: Start Node Service
         uses: appleboy/ssh-action@master
