@@ -58,17 +58,9 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PEM_EC2_PAGOS }}
           script: |
-            pm2 start app.js
+            pm2 start /opt/WorkingDirectoryPagos/app.js
 
-      - name: Start Node Service
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{secrets.IP_ADDRESS_EC2_PAGOS }}
-          username: ec2-user
-          key: ${{ secrets.PEM_EC2_PAGOS }}
-          script: |
-            pm2 start app.js
-     
+         
       - name: Check Status
         uses: appleboy/ssh-action@master
         with:
