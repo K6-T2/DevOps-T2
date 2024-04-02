@@ -58,7 +58,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PEM_EC2_PAGOS }}
           script: |
-            pm2 start /opt/WorkingDirectoryPagos/app.js
+            pm2 start -f /opt/WorkingDirectoryPagos/app.js
 
          
       - name: Check Status
