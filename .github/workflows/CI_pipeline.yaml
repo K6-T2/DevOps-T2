@@ -58,8 +58,9 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PEM_EC2_PAGOS }}
           script: |
+            if ! pm2 list | grep -q 'app'; then
             pm2 start -f /opt/WorkingDirectoryPagos/app.js
-
+            fi
          
       - name: Check Status
         uses: appleboy/ssh-action@master
