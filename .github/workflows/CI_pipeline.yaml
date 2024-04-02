@@ -68,7 +68,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PEM_EC2_PAGOS }}
           script: |
-            if pm2 list | grep -q 'app.js'; then
+            if pm2 list | grep -q 'app'; then
             echo "La aplicación está corriendo."
             else
             echo "La aplicación no está corriendo."
