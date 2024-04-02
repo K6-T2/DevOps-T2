@@ -68,4 +68,4 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PEM_EC2_PAGOS }}
           script: |
-             pm2 status
+             curl ${{secrets.IP_ADDRESS_EC2_PAGOS }}
