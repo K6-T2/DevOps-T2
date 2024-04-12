@@ -53,7 +53,16 @@ jobs:
         key: ${{ secrets.PEM_EC2_PAGOS }}
         script: |
             sudo yum -y install docker
-             
+
+    - name: Pull y run de Docker
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ steps.tfo.outputs.instance_ip }}
+        username: ec2-user
+        key: ${{ secrets.PEM_EC2_PAGOS }}
+        script: |
+             docker pull fmmerayo/devops-t2:t2-devops-k6
+             docker run -d -p 8080:8080 fmmerayo/devops-t2:t2-devops-k6 
 
     - name: Terraform Destroy
       run: |
