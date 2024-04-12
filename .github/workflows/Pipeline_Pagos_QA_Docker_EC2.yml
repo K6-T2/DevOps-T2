@@ -36,11 +36,14 @@ jobs:
       run: | 
          echo "instance_ip=$(terraform output -raw instance_ip_Pagos_qa)" >> $GITHUB_OUTPUT
 
-    - name: Temporizador de 10 segundos para que se termine de lanzar la EC2
-      run: |
-          echo "Iniciando temporizador de 10 segundos..." 
-          sleep 10 # 
-          echo "Temporizador de 10 segundos completado. Continuando con las siguientes acciones."
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u fmmerayo@gmail.com --password-stdin
+      
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag fmmerayo/devops-t2:t2-devops-k6   
+    
+    - name: Push the Docker image to Docker Hub
+      run: docker push fmmerayo/devops-t2:t2-devops-k6
 
     - name: Install Docker y Login
       uses: appleboy/ssh-action@master
@@ -50,13 +53,7 @@ jobs:
         key: ${{ secrets.PEM_EC2_PAGOS }}
         script: |
             sudo yum -y install docker
-            echo ${{ secrets.PASSWORD_USER_DOCKER }} | sudo docker login -u fmmerayo@gmail.com --password-stdin 
-
-    - name: Temporizador para acceder a la IP desde navegador
-      run: |
-          echo "Iniciando temporizador de 60 segundos..." 
-          sleep 90 # 
-          echo "Temporizador de 10 segundos completado. Continuando con las siguientes acciones."
+             
 
     - name: Terraform Destroy
       run: |
