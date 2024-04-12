@@ -53,7 +53,8 @@ jobs:
         key: ${{ secrets.PEM_EC2_PAGOS }}
         script: |
             sudo yum -y install docker
-
+            sudo systemctl start docker
+            
     - name: Pull y run de Docker
       uses: appleboy/ssh-action@master
       with:
@@ -64,15 +65,7 @@ jobs:
              sudo docker pull fmmerayo/devops-t2:t2-devops-k6
              sudo docker run -d -p 8080:8080 fmmerayo/devops-t2:t2-devops-k6 
     
-    - name: Pull y run de Docker
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ steps.tfo.outputs.instance_ip }}
-        username: ec2-user
-        key: ${{ secrets.PEM_EC2_PAGOS }}
-        script: |
-            sudo docker ps
-
+  
     - name: Terraform Destroy
       run: |
         terraform destroy -auto-approve -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
