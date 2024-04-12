@@ -76,7 +76,7 @@ resource "aws_instance" "Pagos_dev_instance" {
 
 
     }
-        output "public_ip_dev" {
+        output "public_ip_pagos_dev" {
     value = aws_instance. Pagos_dev_instance.public_ip
     }
 
