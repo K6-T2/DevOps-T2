@@ -1,5 +1,10 @@
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+
 provider "aws" {
     region = "us-east-2" # Cambia esto a la regi¾n deseada
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
     }
 
 resource "aws_security_group" "instance_security_group" {
@@ -48,8 +53,17 @@ protocol = "tcp"
 cidr_blocks = ["0.0.0.0/0"]
 }
 
+ingress {
+  from_port = 80
+  to_port = 80
+  protocol = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
 }
-    
+
+}
+
+
+
 resource "aws_instance" "Pagos_dev_instance" {
     ami = "ami-019f9b3318b7155c5" # AMI de Amazon Linux
     instance_type = "t2.micro" # Tipo de instancia
