@@ -76,11 +76,11 @@ resource "aws_instance" "Pagos_qa_instance" {
     instance_type = "t2.micro" # Tipo de instancia
     key_name = "vockey" # Nombre de tu key pair existente en AWS
     
-        vpc_security_group_ids = [coalesce(data.aws_security_group.existing.id, aws_security_group.instance_security_group[1].id)]
+        vpc_security_group_ids =  vpc_security_group_ids = vpc_security_group_ids = data.aws_security_group.existing != null ? [data.aws_security_group.existing.id] : [aws_security_group.instance_security_group.id]
+     
         tags = {
     Name = "ORG-PAGOS-QA" #Reemplazar por el nombre correcto
     }
-
 
     }
         output "instance_ip_Pagos_qa" {
