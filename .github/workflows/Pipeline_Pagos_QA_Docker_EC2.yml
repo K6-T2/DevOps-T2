@@ -43,8 +43,10 @@ jobs:
       run: docker build . --file Dockerfile --tag fmmerayo/devops-t2:t2-devops-k6   
     
     - name: Push the Docker image to Docker Hub
-      run: docker push fmmerayo/devops-t2:t2-devops-k6
 
+      run: | 
+          docker push fmmerayo/devops-t2:t2-devops-k6
+          docker pull fmmerayo/devops-t2:t2-devops-k6
     - name: Install Docker y Start
       uses: appleboy/ssh-action@master
       with:
