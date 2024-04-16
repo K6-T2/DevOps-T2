@@ -1,0 +1,117 @@
+Agregar la ruta de trabajo de Terraform a la variable de entorno Path, por UI o bien en cada línea de comandos a ejecutar. Tipear path=%path%;SuRutaATerraformAqui
+
+Generar la Instancia EC2 de DESARROLLO (DEV) con TERRAFORM
+
+Ejemplo de Archivo básico de Main.tf
+
+(Inicio de Archivo, no incluir esta linea ni la de cierre)
+
+Archivo de configuración de Terraform para desplegar una instancia EC2 en AWS
+Configuración del proveedor AWS
+provider "aws" {
+region = "us-east-1" # Cambia esto a la regi¾n deseada
+}
+
+Crear un nuevo grupo de seguridad
+resource "aws_security_group" "instance_security_group" {
+name = "instance_security_group"
+description = "Security group for EC2 instance"
+
+Definición de la instancia EC2
+resource "aws_instance" "PAGOS_dev_instance" {
+ami = "ami-0a3c3a20c09d6f377" # AMI de Amazon Linux
+instance_type = "t2.micro" # Tipo de instancia
+
+Asociar la instancia con el grupo de seguridad recién creado
+vpc_security_group_ids = [aws_security_group.instance_security_group.id]
+
+Tag para identificar la instancia
+tags = {
+Name = "ORG-PAGOS-DEV" #Reemplazar por el nombre correcto
+}
+}
+
+Salida para mostrar la IP pública de la instancia EC2 después del despliegue
+output "public_ip_dev" {
+value = aws_instance. PAGOS_dev_instance.public_ip
+}
+
+(Fin de archivo)
+
+Manual: Tomar la dirección IP Publica de cada EC2 y colocar cada una como un secret en el repositorio. Lo va a necesitar para conectar luego con ssh.
+Manual: Obtener la clave PEM de AWS Details
+Github: Colocar la PEM en una Secret de Github
+
+Utilizar la PEM como Secret en cada comando SSH que se ejecute desde GitHub Actions
+
+Ejemplo de Uso
+
+(Inicio Ejemplo)
+
+env:
+SSH_PRIVATE_KEY: ${{ secrets.PEM_FILE }}
+REMOTE_USER: ec2-user
+REMOTE_HOST: ${{ vars.AWS_DEV_HOST }}
+APP_NAME: app.js
+
+name: Create directory
+  uses: appleboy/ssh-action@master
+  with:
+    host: ${{ env.REMOTE_HOST }}
+    username: ${{ env.REMOTE_USER }}
+    key: ${{ secrets.PEM_FILE }}
+    script: |
+      sudo rm -rf /opt/montoto || true
+(Fin Ejemplo)
+
+Usando Terraform agregar el par de claves VOCKEY que es el que usa por defecto AWS Academy en la máquina creada:
+
+resource "aws_instance" "example" {
+ami = "ami-0a3c3a20c09d6f377" # AMI de Amazon Linux
+instance_type = "t2.micro" # Tipo de instancia
+key_name = "vockey" # Nombre de tu key pair existente en AWS
+
+Usando Terraform Abrir los puertos 22, 443 y 3000 en AWS mediante el Security Group asociado al EC2 en los orígenes (0.0.0.0/0)
+Ejemplo:
+
+ingress {
+from_port = 22
+to_port = 22
+protocol = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+from_port = 443
+to_port = 443
+protocol = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+from_port = 3000
+to_port = 3000
+protocol = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+egress {
+from_port = 22
+to_port = 22
+protocol = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+egress {
+from_port = 443
+to_port = 443
+protocol = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
+
+egress {
+from_port = 3000
+to_port = 3000
+protocol = "tcp"
+cidr_blocks = ["0.0.0.0/0"]
+}
