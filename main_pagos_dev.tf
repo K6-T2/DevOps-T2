@@ -8,6 +8,9 @@ provider "aws" {
     }
 
 resource "aws_security_group" "instance_security_group" {
+
+count = data.aws_security_group.existing.id == null ? 1 : 0
+
 name = "instance_security_group"
 description = "Security group for EC2 instance"
     
@@ -69,7 +72,7 @@ resource "aws_instance" "Pagos_dev_instance" {
     instance_type = "t2.micro" # Tipo de instancia
     key_name = "vockey" # Nombre de tu key pair existente en AWS
     
-        vpc_security_group_ids = vpc_security_group_ids = [aws_security_group.instance_security_group.id]
+         vpc_security_group_ids = coalesce([data.aws_security_group.existing.id], length(aws_security_group.instance_security_group) > 0 ? [aws_security_group.instance_security_group[0].id] : [])
         tags = {
     Name = "ORG-PAGOS-DEV" #Reemplazar por el nombre correcto
     }
