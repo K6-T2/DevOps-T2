@@ -1,4 +1,4 @@
-name: Pipeline_Pagos_QA_Docker_EC2
+name: Pipeline_Pagos_QA_ConDestroy
 
 
 on:
