@@ -115,7 +115,11 @@ jobs:
       run: |
           echo "Iniciando temporizador de 60 segundos..." 
           sleep 60 # 
-          echo "Temporizador de 10 segundos completado. Continuando con las siguientes acciones."
+          echo "Temporizador de 60 segundos completado. Continuando con las siguientes acciones."
+
+    - name: Terraform Destroy
+      run: |
+        terraform destroy -auto-approve -var="aws_access_key=${{ env.AWS_ACCESS_KEY_ID }}" -var="aws_secret_key=${{ env.AWS_SECRET_ACCESS_KEY }}"
 
     - name: Terraform Destroy
       run: |
