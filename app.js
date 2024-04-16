@@ -1,5 +1,5 @@
 // Importar el módulo express
-const express = require('express');
+import express = require('express');
 
 // Crear una instancia de express
 const app = express();
