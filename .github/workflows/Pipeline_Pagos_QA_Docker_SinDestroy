@@ -1,4 +1,4 @@
-name: Pipeline_Pagos_QA_SinDestroy
+name: Pipeline_Pagos_QA_Docker_SinDestroy
 
 
 on:
