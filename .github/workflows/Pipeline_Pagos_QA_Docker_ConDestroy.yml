@@ -36,13 +36,18 @@ jobs:
       run: | 
          echo "instance_ip=$(terraform output -raw instance_ip_Pagos_qa)" >> $GITHUB_OUTPUT
 
-    - name: Temporizador de 10 segundos para que se termine de lanzar la EC2
-      run: |
-          echo "Iniciando temporizador de 10 segundos..." 
-          sleep 10 # 
-          echo "Temporizador de 10 segundos completado. Continuando con las siguientes acciones."
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.PASSWORD_USER_DOCKER }} | docker login -u fmmerayo@gmail.com --password-stdin
+      
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag fmmerayo/devops-t2:t2-devops-k6   
+    
+    - name: Push the Docker image to Docker Hub
 
-    - name: Install Docker y Login
+      run: | 
+          docker push fmmerayo/devops-t2:t2-devops-k6
+          docker pull fmmerayo/devops-t2:t2-devops-k6
+    - name: Install Docker y Start
       uses: appleboy/ssh-action@master
       with:
         host: ${{ steps.tfo.outputs.instance_ip }}
@@ -50,13 +55,27 @@ jobs:
         key: ${{ secrets.PEM_EC2_PAGOS }}
         script: |
             sudo yum -y install docker
-            echo ${{ secrets.PASSWORD_USER_DOCKER }} | sudo docker login -u fmmerayo@gmail.com --password-stdin 
-
-    - name: Temporizador para acceder a la IP desde navegador
-      run: |
-          echo "Iniciando temporizador de 60 segundos..." 
-          sleep 90 # 
-          echo "Temporizador de 10 segundos completado. Continuando con las siguientes acciones."
+            sudo systemctl start docker
+            
+    - name: Pull y run de Docker
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ steps.tfo.outputs.instance_ip }}
+        username: ec2-user
+        key: ${{ secrets.PEM_EC2_PAGOS }}
+        script: |
+             sudo docker pull fmmerayo/devops-t2:t2-devops-k6
+             sudo docker run -d -p 8080:8080 fmmerayo/devops-t2:t2-devops-k6 
+      
+    - name: Docker ps
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ steps.tfo.outputs.instance_ip }}
+        username: ec2-user
+        key: ${{ secrets.PEM_EC2_PAGOS }}
+        script: |
+             sudo docker ps
+ 
 
     - name: Terraform Destroy
       run: |
