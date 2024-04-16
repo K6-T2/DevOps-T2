@@ -1,4 +1,4 @@
 # MICROSERVICIO DE PAGOS
 
 
-[example.txt](./Consigna Generar IAC.txt)
+[Consigna para IAC.txt](./Consigna%20Generar%20IAC.txt)
