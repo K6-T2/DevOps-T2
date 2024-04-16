@@ -7,6 +7,11 @@ provider "aws" {
   secret_key = var.aws_secret_key
     }
 
+data "aws_security_group" "existing" {
+  name = "instance_security_group"
+}
+
+
 resource "aws_security_group" "instance_security_group" {
 
 count = data.aws_security_group.existing.id == null ? 1 : 0
