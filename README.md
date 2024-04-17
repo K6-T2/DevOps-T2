@@ -24,6 +24,8 @@ Esta consigna propone:
 
 
 
+
+
 **Consigna 2**: Generar Pipeline CI
 
 **[Consigna para IAC Dev.txt](./Consigna%20Pipeline%20CI%20Dev.txt)**
