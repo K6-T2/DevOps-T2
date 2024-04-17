@@ -8,7 +8,9 @@ Forma parte del Sprint 1 del proyecto **"Caso de Negocio"** el cual tenia 2 cons
 
 **Consigna 1**: Generar la IAC para el posterior despliege del servidor Node.js.
 
-Esta consigna propone:
+**[Consigna para IAC Dev.txt](./Consigna%20Generar%20IAC%20Dev.txt)**
+
+Esta consigna propone: 
   
  + Configurar las credenciales Access key y Secret Key AWS en shell y lanzar una EC2 en base a un archivo main.tf
  + Generar un archivo Personal Access Token para el acceso ala EC-2 por SSH. Guardar la clave en un secret de Github Actions.
@@ -20,9 +22,11 @@ Esta consigna propone:
  
  + Por ultimo, Crear un workflow Acceder a la EC-2 desde Github Actionsmediante ssh y crear un directorio
 
-**[Consigna para IAC Dev.txt](./Consigna%20Generar%20IAC%20Dev.txt)**
 
-**Consigna 2**: 
+
+**Consigna 2**: Generar Pipeline CI
+
+**[Consigna para IAC Dev.txt](./Consigna%20Pipeline%20CI%20Dev.txt)**
 
 En consecuencia con la consigna 1, la consigna 2 propone:
 
@@ -34,6 +38,7 @@ En consecuencia con la consigna 1, la consigna 2 propone:
   + Instalar paquetes NPM Express y PM2
   + Iniciar el servicio en NODE con PM2 Start
   + Verificar que la aplicacion este corriendo mediante curl, ns o pm2
-    
+
+
 
 
