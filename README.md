@@ -4,9 +4,8 @@ El desarrollo de este proyecto se ubica en el marco del Bootcamp **"Academia Dev
 
 Esta rama esta se encarga de desplegar un servidor Node.Js en una EC-2 de AWS para un entorno DEV. Forma parte del Sprint 1 del proyecto **"Caso de Negocio"** el cual tenia 2 consignas.
 
-<br>
 
-**Consigna 1: Generar la IAC para el posterior despliege del servidor Node.js.**
+Consigna 1: Generar la IAC para el posterior despliege del servidor Node.js.
 
 **[Consigna para IAC Dev.txt](./Consigna%20Generar%20IAC%20Dev.txt)**
 
@@ -21,10 +20,9 @@ Esta consigna propone:
       + Devuelve un output que devuelva la IP publica para ser usada posteriormente.    
  
  + Por ultimo, Crear un workflow Acceder a la EC-2 desde Github Actionsmediante ssh y crear un directorio
-<br>
-<br>
 
-**Consigna 2: Generar Pipeline CI**
+
+Consigna 2: Generar Pipeline CI
 
 **[Consigna Pipeline CI Dev.txt](./Consigna%20Pipeline%20CI%20Dev.txt)**
 
