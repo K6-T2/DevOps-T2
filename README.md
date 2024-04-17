@@ -2,11 +2,8 @@
 
 El desarrollo de este proyecto se ubica en el marco del Bootcamp **"Academia Devops"** desarrollado y supervisado por **Alkemy** para la empresa **Softtek**.
 
-Esta rama esta se encarga de desplegar un servidor Node.Js en una EC-2 de AWS para un entorno DEV.
+Esta rama esta se encarga de desplegar un servidor Node.Js en una EC-2 de AWS para un entorno DEV. Forma parte del Sprint 1 del proyecto **"Caso de Negocio"** el cual tenia 2 consignas.
 
-Forma parte del Sprint 1 del proyecto **"Caso de Negocio"** el cual tenia 2 consignas.
-
-<br>
 <br>
 
 **Consigna 1: Generar la IAC para el posterior despliege del servidor Node.js.**
