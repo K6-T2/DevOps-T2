@@ -39,6 +39,5 @@ En consecuencia con la consigna 1, la consigna 2 propone:
   + Iniciar el servicio en NODE con PM2 Start
   + Verificar que la aplicacion este corriendo mediante curl, ns o pm2
 
-
-
+<code> esto es un snippet de codigo? <code>
 
