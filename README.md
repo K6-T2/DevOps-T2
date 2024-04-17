@@ -14,9 +14,9 @@ El proyecto se dividio en 2 sprints:
 
 
 Integrantes:
-Santiago Ambricca
-Patricia Cayo
-Tomas Campos
-Luka Meira
-Federico Merayo
+Santiago Ambricca <br>
+Patricia Cayo <br>
+Tomas Campos <br>
+Luka Meira <br>
+Federico Merayo <br>
 Lars Chammma
