@@ -26,6 +26,7 @@ Esta consigna propone:
  + Por ultimo, Crear un workflow Acceder a la EC-2 desde Github Actionsmediante ssh y crear un directorio
 <br>
 <br>
+
 **Consigna 2: Generar Pipeline CI**
 
 **[Consigna para IAC Dev.txt](./Consigna%20Pipeline%20CI%20Dev.txt)**
