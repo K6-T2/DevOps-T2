@@ -6,12 +6,12 @@ Esta rama esta se encarga de desplegar un servidor Node.Js en una EC-2 de AWS pa
 
 Forma parte del Sprint 1 del proyecto **"Caso de Negocio"** el cual tenia 2 consignas principales:
 
-Consigna 1: Generar la IAC para el posterior despliege del servidor Node.js.
+**Consigna 1**: Generar la IAC para el posterior despliege del servidor Node.js.
 
 Esta consigna propone:
   
  + Configurar las credenciales Access key y Secret Key AWS en shell y lanzar una EC2 en base a un archivo main.tf
- + Generar un archivo .PEM para el acceso ala EC-2 por SSH. Guardar la clave en un secret de Github Actions.
+ + Generar un archivo Personal Access Token para el acceso ala EC-2 por SSH. Guardar la clave en un secret de Github Actions.
  + El archivo Main tiene las siguientes caracteristicas:
 
       + Crea un security group modificandole las politicas de ingreso y egreso. 
@@ -20,5 +20,20 @@ Esta consigna propone:
  
  + Por ultimo, Crear un workflow Acceder a la EC-2 desde Github Actionsmediante ssh y crear un directorio
 
-[Consigna para IAC Dev.txt](./Consigna%20Generar%20IAC%20Dev.txt)
+**[Consigna para IAC Dev.txt](./Consigna%20Generar%20IAC%20Dev.txt)**
+
+**Consigna 2**: 
+
+En consecuencia con la consigna 1, la consigna 2 propone:
+
+  + Acceder a la EC-2 creada por SSH desde Github Actions
+  + Instalarle paquetes: Nodejs, Npm, Git
+  + Crear un Working Directory "/opt/nombreDeSuDirectorio"
+  + Clonar el repositorio base brindado por Alkemy
+    [Repositorio base](https://github.com/alkemyTech/UMSA-DevOps-T2)
+  + Instalar paquetes NPM Express y PM2
+  + Iniciar el servicio en NODE con PM2 Start
+  + Verificar que la aplicacion este corriendo mediante curl, ns o pm2
+    
+
 
